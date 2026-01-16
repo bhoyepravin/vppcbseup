@@ -33,7 +33,7 @@ function OurAchievements() {
   return (
     <section className="py-24 relative overflow-hidden">
       {/* Background decorative elements */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-full -translate-x-48 -translate-y-48"></div>
+      <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-navy-300 to-navy-500/10 rounded-full -translate-x-48 -translate-y-48"></div>
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-pink-500/10 to-purple-500/10 rounded-full translate-x-48 translate-y-48"></div>
 
       {/* Trophy icons floating */}
@@ -60,19 +60,24 @@ function OurAchievements() {
           viewport={{ once: true }}
         >
           <div className="inline-flex items-center gap-4 mb-6">
-            <div className="w-12 h-12 bg-gradient-to-br from-yellow-500/20 to-orange-500/20 rounded-2xl flex items-center justify-center">
-              <Trophy className="w-7 h-7 text-[#800000]" />
+            <div className="w-12 h-12 bg-gradient-to-br rounded-2xl flex items-center justify-center">
+            <div className="w-2 h-2 rounded-full bg-navy-500"></div>
+
+              {/* <Trophy className="w-7 h-7 text-[#800000]" /> */}
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#800000] via-[#800000] to-[#800000] bg-clip-text text-transparent">
+            <h2 className="font-title text-3xl md:text-4xl font-bold text-gradient-navy
+">
               {achievementsData.title}
             </h2>
-            <div className="w-12 h-12 bg-gradient-to-br from-orange-500/20 to-yellow-500/20 rounded-2xl flex items-center justify-center">
-              <Star className="w-7 h-7 text-[#800000] fill-[#800000]" />
+            <div className="w-12 h-12 bg-gradient-to-br rounded-2xl flex items-center justify-center">
+            <div className="w-2 h-2 rounded-full bg-navy-500"></div>
+
+              {/* <Star className="w-7 h-7 text-[#800000] fill-[#800000]" /> */}
             </div>
           </div>
 
           <motion.div
-            className="h-1.5 w-24 bg-gradient-to-r from-[#800000] via-[#800000] to-[#800000] mx-auto mb-8 rounded-full"
+             className="h-1.5 w-24 gradient-navy mx-auto mb-8 rounded-full"
             initial={{ width: 0 }}
             whileInView={{ width: "6rem" }}
             transition={{ duration: 0.8, delay: 0.3 }}
@@ -88,11 +93,11 @@ function OurAchievements() {
           {/* Desktop Left Arrow */}
           <motion.button
             onClick={scrollLeft}
-            className="hidden lg:flex absolute -left-16 top-1/2 -translate-y-1/2 w-14 h-14 rounded-2xl bg-gradient-to-r from-[#194369] to-[#194369] text-white shadow-2xl items-center justify-center hover:from-[#194369] hover:to-[#194369] transition-all duration-300 hover:scale-80 z-20 backdrop-blur-sm border border-white/20"
+            className="hidden lg:flex absolute -left-16 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full gradient-navy text-white shadow-2xl items-center justify-center hover:from-[#194369] hover:to-[#194369] transition-all duration-300 hover:scale-80 z-20 backdrop-blur-sm border border-white/20"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
           >
-            <ChevronLeft className="w-7 h-7" />
+            <ChevronLeft className="w-7 h-7 gradient-navy" />
           </motion.button>
 
           {/* Cards Wrapper */}
@@ -182,7 +187,7 @@ function OurAchievements() {
           {/* Desktop Right Arrow */}
           <motion.button
             onClick={scrollRight}
-            className="hidden lg:flex absolute -right-16 top-1/2 -translate-y-1/2 w-14 h-14 rounded-2xl bg-gradient-to-r from-[#194369] to-[#194369] text-white shadow-2xl items-center justify-center hover:from-[#194369] hover:to-[#194369] transition-all duration-300 hover:scale-80 z-20 backdrop-blur-sm border border-white/20"
+            className="hidden lg:flex absolute -right-16 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-gradient-to-r gradient-navy text-white shadow-2xl items-center justify-center hover:from-[#194369] hover:to-[#194369] transition-all duration-300 hover:scale-80 z-20 backdrop-blur-sm border border-white/20"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
           >

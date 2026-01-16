@@ -35,15 +35,15 @@ function QuickLinks() {
           viewport={{ once: true, margin: "-50px" }}
         >
           <div className="inline-flex items-center gap-3 mb-4">
-            <Sparkles className="w-6 h-6 text-[#800000] fill-[#800000]" />
-            <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#800000] via-[#800000] to-[#800000] bg-clip-text text-transparent">
+            <div className="w-2 h-2 rounded-full bg-navy-500"></div>
+            <h2 className="font-title text-3xl md:text-4xl font-bold text-gradient-navy">
               {quicklinksData.title}
             </h2>
-            <Sparkles className="w-6 h-6 text-[#800000] fill-[#800000]" />
+            <div className="w-2 h-2 rounded-full bg-navy-500"></div>
           </div>
 
           <motion.div
-            className="h-1.5 w-24 bg-gradient-to-r from-[#800000] via-[#800000] to-[#800000] mx-auto mb-8 rounded-full"
+             className="h-1.5 w-24 gradient-navy mx-auto mb-8 rounded-full"
             initial={{ width: 0 }}
             whileInView={{ width: "6rem" }}
             transition={{ duration: 0.8, delay: 0.3 }}
@@ -110,7 +110,7 @@ function QuickLinks() {
         >
           <Link
             to="/resources"
-            className="group px-10 py-4 bg-gradient-to-r from-[#0A2343] to-[#194369] text-white rounded-xl font-semibold  transition-all duration-300 shadow-2xl hover:shadow-3xl hover:-translate-y-1 transform flex items-center gap-3"
+            className="group px-10 py-4 gradient-navy text-white rounded-xl font-semibold  transition-all duration-300 shadow-2xl hover:shadow-3xl hover:-translate-y-1 transform flex items-center gap-3"
           >
             <span>Browse All Resources</span>
             <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />

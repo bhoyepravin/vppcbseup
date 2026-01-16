@@ -81,14 +81,20 @@ function Home() {
 
       {/* Quick Links - Light blue gradient */}
       <section className="relative z-10">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#f0f9ff] via-[#e0f2fe] to-[#bae6fd]"></div>
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-400 to-transparent"></div>
-        <QuickLinks />
-      </section>
+  {/* Background Gradient */}
+  <div className="absolute inset-0 bg-gradient-to-b from-navy-50 via-navy-100 to-navy-200"></div>
+
+  {/* Top Divider Line */}
+  <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-navy-400 to-transparent"></div>
+
+  <QuickLinks />
+</section>
+
+
 
       {/* Achievements - Light purple gradient */}
       <section className="relative z-10">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#faf5ff] via-[#f3e8ff] to-[#e9d5ff]"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#9bc1e5] via-[#9bc1e5] to-[#4685c6]"></div>
         <OurAchievements />
       </section>
 
