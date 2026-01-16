@@ -18,7 +18,20 @@ import {
   Filter,
   Search,
   X,
+  CheckCircle,
+  Star,
+  Sparkles,
+  Cloud,
+  Sun,
+  Heart,
+  MessageCircle,
+  HelpCircle,
+  Clipboard,
+  MailCheck,
+  Shield,
+  ChevronDown,
 } from "lucide-react";
+import { motion } from "framer-motion";
 
 // API base URL - update this to match your Laravel server
 const API_BASE_URL = "https://vppcms.demovoting.com/api";
@@ -47,6 +60,7 @@ const AdmissionEnquiryForm = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
   const [classFilter, setClassFilter] = useState("");
+  const [showMobileList, setShowMobileList] = useState(false);
 
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -134,17 +148,9 @@ const AdmissionEnquiryForm = () => {
 
     // BSNL
     80: "BSNL",
-    // 81: "BSNL",
-    // 82: "BSNL",
-    // 83: "BSNL",
-    // 84: "BSNL",
-    // 85: "BSNL",
-    // 86: "BSNL",
 
     // MTNL
     87: "MTNL",
-    // 88: "MTNL",
-    // 89: "MTNL",
 
     // Reliance Communications
     60: "Reliance",
@@ -254,26 +260,17 @@ const AdmissionEnquiryForm = () => {
 
     // Comprehensive fake number detection
     const invalidPatterns = [
-      // All same digits
       /^(\d)\1{9}$/,
-
-      // Sequential ascending
       /^1234567890$/,
       /^0123456789$/,
       /^2345678901$/,
-
-      // Sequential descending
       /^0987654321$/,
       /^9876543210$/,
       /^8765432109$/,
-
-      // Repeated patterns
-      /^(\d{2})\1{4}$/, // 1212121212
-      /^(\d{3})\1{3}$/, // 1231231231
-      /^(\d{4})\1{2}$/, // 1234123412
-      /^(\d{5})\1$/, // 1234512345
-
-      // Common fake patterns
+      /^(\d{2})\1{4}$/,
+      /^(\d{3})\1{3}$/,
+      /^(\d{4})\1{2}$/,
+      /^(\d{5})\1$/,
       /^1111111111$/,
       /^2222222222$/,
       /^3333333333$/,
@@ -284,21 +281,13 @@ const AdmissionEnquiryForm = () => {
       /^8888888888$/,
       /^9999999999$/,
       /^0000000000$/,
-
-      // Palindrome numbers
       /^(\d)(\d)(\d)(\d)(\d)(\d)\6\5\4\3\2\1$/,
-
-      // Mirror numbers
       /^(\d)(\d)(\d)(\d)(\d)\5\4\3\2\1$/,
-
-      // Test numbers commonly used
       /^9998887776$/,
       /^8887776665$/,
       /^7776665554$/,
       /^6665554443$/,
       /^5554443332$/,
-
-      // Common placeholder numbers
       /^1231231234$/,
       /^9879879876$/,
       /^4564564567$/,
@@ -307,32 +296,6 @@ const AdmissionEnquiryForm = () => {
     for (const pattern of invalidPatterns) {
       if (pattern.test(mobileNo)) {
         return "Please enter a valid mobile number (test/fake numbers not allowed)";
-      }
-    }
-
-    // Check for invalid operator-specific patterns
-    // Some operators have specific number ranges that are often fake
-    const jioFakePatterns = [
-      /^70[0-4]\d{7}$/, // Jio test numbers often start with 700-704
-    ];
-
-    const airtelFakePatterns = [
-      /^98[0-2]\d{7}$/, // Airtel test ranges
-    ];
-
-    if (operator === "Jio") {
-      for (const pattern of jioFakePatterns) {
-        if (pattern.test(mobileNo)) {
-          return "Please enter a valid Jio mobile number";
-        }
-      }
-    }
-
-    if (operator === "Airtel") {
-      for (const pattern of airtelFakePatterns) {
-        if (pattern.test(mobileNo)) {
-          return "Please enter a valid Airtel mobile number";
-        }
       }
     }
 
@@ -347,7 +310,7 @@ const AdmissionEnquiryForm = () => {
     return null; // No error
   };
 
-  // Validate mobile number in real-time
+  // Handle mobile number change
   const handleMobileChange = (e) => {
     const value = e.target.value.replace(/\D/g, "").slice(0, 10);
 
@@ -376,7 +339,6 @@ const AdmissionEnquiryForm = () => {
         }));
       }
     } else if (value.length > 0) {
-      // Partial validation for less than 10 digits
       setMobileValidation({
         isValid: false,
         message: "Enter 10-digit mobile number",
@@ -384,7 +346,6 @@ const AdmissionEnquiryForm = () => {
         operator: "",
       });
     } else {
-      // Clear validation state
       setMobileValidation({
         isValid: false,
         message: "",
@@ -394,7 +355,7 @@ const AdmissionEnquiryForm = () => {
     }
   };
 
-  // Handle other form field changes
+  // Handle form field changes
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -438,8 +399,6 @@ const AdmissionEnquiryForm = () => {
       if (dob >= today) {
         newErrors.date_of_birth = "Date of Birth must be in the past";
       }
-
-      // Additional check for very young or old ages
       const age = today.getFullYear() - dob.getFullYear();
       if (age < 2) {
         newErrors.date_of_birth = "Student must be at least 2 years old";
@@ -474,12 +433,6 @@ const AdmissionEnquiryForm = () => {
       newErrors.email = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = "Email is invalid";
-    } else {
-      // Basic email pattern check
-      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailPattern.test(formData.email)) {
-        newErrors.email = "Please enter a valid email address";
-      }
     }
 
     // Mobile number validation
@@ -560,7 +513,6 @@ const AdmissionEnquiryForm = () => {
 
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
-      // Scroll to first error
       const firstError = Object.keys(validationErrors)[0];
       const element = document.getElementsByName(firstError)[0];
       if (element) {
@@ -570,14 +522,12 @@ const AdmissionEnquiryForm = () => {
       return;
     }
 
-    // Double-check mobile validation before submission
     const mobileError = validateMobileNumber(formData.mobile_no);
     if (mobileError) {
       setErrors((prev) => ({
         ...prev,
         mobile_no: mobileError,
       }));
-
       const element = document.getElementsByName("mobile_no")[0];
       if (element) {
         element.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -590,7 +540,6 @@ const AdmissionEnquiryForm = () => {
     setSubmitError("");
 
     try {
-      // Prepare data for API (match field names exactly)
       const apiData = {
         full_name: formData.full_name,
         date_of_birth: formData.date_of_birth,
@@ -614,24 +563,12 @@ const AdmissionEnquiryForm = () => {
       const result = await response.json();
 
       if (!response.ok) {
-        // Handle validation errors from backend
         if (response.status === 422 && result.errors) {
           const apiErrors = {};
           Object.keys(result.errors).forEach((key) => {
-            // Map API field names to form field names
-            const formFieldName = key;
-            apiErrors[formFieldName] = result.errors[key][0];
+            apiErrors[key] = result.errors[key][0];
           });
           setErrors(apiErrors);
-
-          // Focus on first error field
-          const firstError = Object.keys(apiErrors)[0];
-          const element = document.getElementsByName(firstError)[0];
-          if (element) {
-            element.scrollIntoView({ behavior: "smooth", block: "center" });
-            element.focus();
-          }
-
           throw new Error("Validation failed");
         }
         throw new Error(
@@ -642,7 +579,6 @@ const AdmissionEnquiryForm = () => {
       setIsSubmitting(false);
       setIsSubmitted(true);
 
-      // Reset form after 3 seconds
       setTimeout(() => {
         setIsSubmitted(false);
         setFormData({
@@ -663,7 +599,6 @@ const AdmissionEnquiryForm = () => {
           operator: "",
         });
 
-        // Refresh enquiries list if it's visible
         if (showEnquiries) {
           fetchEnquiries(1);
         }
@@ -677,7 +612,7 @@ const AdmissionEnquiryForm = () => {
     }
   };
 
-  // Individual form fields for better state management
+  // Render form field
   const renderFormField = (fieldConfig) => {
     const {
       label,
@@ -694,14 +629,14 @@ const AdmissionEnquiryForm = () => {
     const value = formData[name];
 
     return (
-      <div className="mb-6">
-        <label className="block text-gray-700 text-sm font-semibold mb-2">
+      <div className="mb-4 sm:mb-6">
+        <label className="block text-gray-700 text-xs sm:text-sm font-semibold mb-2">
           {label} {required && <span className="text-red-500">*</span>}
         </label>
         <div className="relative">
           {Icon && (
             <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
-              <Icon className="h-5 w-5" />
+              <Icon className="h-4 w-4 sm:h-5 sm:w-5" />
             </div>
           )}
           {type === "select" ? (
@@ -709,8 +644,8 @@ const AdmissionEnquiryForm = () => {
               name={name}
               value={value}
               onChange={handleChange}
-              className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F07B3D] focus:border-transparent transition-all ${
-                Icon ? "pl-12" : "pl-4"
+              className={`w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-navy-500 focus:border-transparent transition-all ${
+                Icon ? "pl-10 sm:pl-12" : "pl-3 sm:pl-4"
               } ${error ? "border-red-500" : "border-gray-300"}`}
             >
               {options.map((option, index) => (
@@ -726,16 +661,15 @@ const AdmissionEnquiryForm = () => {
               onChange={handleChange}
               placeholder={placeholder}
               rows={rows}
-              className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F07B3D] focus:border-transparent transition-all ${
-                Icon ? "pl-12" : "pl-4"
+              className={`w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-navy-500 focus:border-transparent transition-all ${
+                Icon ? "pl-10 sm:pl-12" : "pl-3 sm:pl-4"
               } ${error ? "border-red-500" : "border-gray-300"}`}
             />
           ) : name === "mobile_no" ? (
-            // Special input for mobile number
             <div className="relative">
               <div className="absolute left-3 top-1/2 transform -translate-y-1/2 flex items-center gap-1">
-                <span className="text-gray-500 text-sm">+91</span>
-                <div className="w-px h-4 bg-gray-300 mx-1"></div>
+                <span className="text-gray-500 text-xs sm:text-sm">+91</span>
+                <div className="w-px h-3 sm:h-4 bg-gray-300 mx-1"></div>
               </div>
               <input
                 type="tel"
@@ -746,7 +680,7 @@ const AdmissionEnquiryForm = () => {
                 maxLength="10"
                 pattern="[0-9]*"
                 inputMode="numeric"
-                className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F07B3D] focus:border-transparent transition-all pl-20 ${
+                className={`w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-navy-500 focus:border-transparent transition-all pl-16 sm:pl-20 ${
                   error ? "border-red-500" : "border-gray-300"
                 }`}
               />
@@ -758,8 +692,8 @@ const AdmissionEnquiryForm = () => {
               value={value}
               onChange={handleChange}
               placeholder={placeholder}
-              className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F07B3D] focus:border-transparent transition-all ${
-                Icon ? "pl-12" : "pl-4"
+              className={`w-full px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base border rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-navy-500 focus:border-transparent transition-all ${
+                Icon ? "pl-10 sm:pl-12" : "pl-3 sm:pl-4"
               } ${error ? "border-red-500" : "border-gray-300"}`}
             />
           )}
@@ -770,13 +704,9 @@ const AdmissionEnquiryForm = () => {
           !error &&
           value.length === 10 &&
           mobileValidation.isValid && (
-            <div className="mt-1">
+            <div className="mt-1 sm:mt-2">
               <p className="text-green-600 text-xs flex items-center gap-1">
-                <svg
-                  className="h-3 w-3"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
+                <svg className="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
                   <path
                     fillRule="evenodd"
                     d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -793,37 +723,10 @@ const AdmissionEnquiryForm = () => {
                     style={{ width: "100%" }}
                   ></div>
                 </div>
-                <span className="text-xs text-green-600">✓ Real number</span>
+                <span className="text-xs text-green-600">✓ Valid number</span>
               </div>
             </div>
           )}
-
-        {name === "mobile_no" &&
-          !error &&
-          value.length === 10 &&
-          !mobileValidation.isValid && (
-            <div className="mt-1">
-              <p className="text-yellow-600 text-xs flex items-center gap-1">
-                <AlertCircle className="h-3 w-3" />
-                Checking number validity...
-              </p>
-            </div>
-          )}
-
-        {name === "mobile_no" && value.length > 0 && value.length < 10 && (
-          <div className="mt-1">
-            <p className="text-blue-600 text-xs flex items-center gap-1">
-              <svg className="h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  fillRule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              Enter {10 - value.length} more digit(s)
-            </p>
-          </div>
-        )}
 
         {error && (
           <p className="text-red-500 text-xs mt-1 flex items-center gap-1">
@@ -843,326 +746,195 @@ const AdmissionEnquiryForm = () => {
     setCurrentPage(1);
   };
 
-  // Test function to check fake numbers (for development)
-  const testFakeNumbers = () => {
-    const testNumbers = [
-      "1111111111", // All same digits
-      "1234567890", // Sequential ascending
-      "0987654321", // Sequential descending
-      "9999999999", // All 9s
-      "1231231234", // Repeated pattern
-      "9876543210", // Another sequential
-      "7001234567", // Jio test range
-      "9812345678", // Airtel test range
-    ];
-
-    console.log("Testing fake number detection:");
-    testNumbers.forEach((number) => {
-      const error = validateMobileNumber(number);
-      console.log(`${number}: ${error || "VALID"}`);
-    });
-  };
-
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-blue-50 py-12 px-4">
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-center text-2xl text-[#800000] md:text-4xl font-serif font-semibold text- mb-4">
-            Admission Enquiry Form
-          </h1>
-          <div className="w-20 h-1 bg-gradient-to-r from-[#800000] to-[#800000] mx-auto rounded-full mb-6"></div>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Begin your child's educational journey with us. Fill out the form
-            below and our admission team will get in touch with you shortly.
-          </p>
+    <div className="min-h-screen bg-gradient-to-b from-white to-navy-50/30 py-8 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-8">
+      {/* Background decorative elements */}
+      <div className="absolute top-0 left-0 w-48 h-48 sm:w-64 sm:h-64 bg-gradient-to-br from-navy-100/20 to-blue-100/10 rounded-full -translate-x-24 -translate-y-24"></div>
+      <div className="absolute bottom-0 right-0 w-48 h-48 sm:w-64 sm:h-64 bg-gradient-to-tl from-blue-100/10 to-navy-100/20 rounded-full translate-x-24 translate-y-24"></div>
+
+      {/* Creative decorative elements - Inquiry related */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-10 left-5 sm:top-20 sm:left-10 opacity-20 animate-bounce">
+          <Cloud className="w-8 h-8 sm:w-10 sm:h-10 text-navy-400" />
         </div>
+        <div className="absolute top-20 right-8 sm:top-32 sm:right-16 opacity-20 animate-pulse">
+          <Sun className="w-10 h-10 sm:w-12 sm:h-12 text-yellow-400" />
+        </div>
+        <div className="absolute bottom-20 left-10 sm:bottom-32 sm:left-20 opacity-20 animate-bounce">
+          <MessageCircle className="w-8 h-8 sm:w-10 sm:h-10 text-green-400" />
+        </div>
+        <div className="absolute bottom-10 right-5 sm:bottom-20 sm:right-10 opacity-20 animate-pulse">
+          <MailCheck className="w-8 h-8 sm:w-10 sm:h-10 text-blue-300" />
+        </div>
+        <div className="absolute top-1/3 left-1/4 opacity-15">
+          <Sparkles className="w-6 h-6 sm:w-8 sm:h-8 text-navy-300" />
+        </div>
+        <div className="absolute bottom-1/3 right-1/4 opacity-15">
+          <HelpCircle className="w-6 h-6 sm:w-8 sm:h-8 text-purple-300" />
+        </div>
+        <div className="absolute top-1/2 left-10 opacity-10">
+          <Clipboard className="w-10 h-10 sm:w-12 sm:h-12 text-navy-200" />
+        </div>
+      </div>
 
-        {/* Success Message */}
-        {isSubmitted && (
-          <div className="mb-8 bg-green-50 border border-green-200 rounded-lg p-6 animate-fadeIn">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                <Send className="w-6 h-6 text-green-600" />
+      <div className="max-w-6xl mx-auto relative z-10">
+        {/* ================= HEADER ================= */}
+        <motion.div
+          className="text-center mb-8 sm:mb-12 md:mb-16"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <div className="inline-flex items-center gap-3 mb-4">
+            <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-navy-500"></div>
+            <h1 className="font-title text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gradient-navy">
+              Admission Enquiry Form
+            </h1>
+            <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-navy-500"></div>
+          </div>
+
+          <motion.div
+            className="h-1 sm:h-1.5 w-16 sm:w-20 md:w-24 bg-gradient-to-r from-navy-600 via-blue-600 to-navy-600 mx-auto mb-4 sm:mb-6 rounded-full"
+            initial={{ width: 0 }}
+            whileInView={{ width: "4rem" }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            viewport={{ once: true }}
+          />
+          
+          <p className="text-gray-700 max-w-2xl mx-auto text-sm sm:text-base md:text-lg px-2 sm:px-4">
+            Begin your child's educational journey with us. Fill out the form below and 
+            our admission team will get in touch with you shortly.
+          </p>
+        </motion.div>
+
+        {/* ================= INFO CARDS ================= */}
+        {/* <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12"
+        >
+          {[
+            {
+              icon: <Shield className="h-5 w-5 sm:h-6 sm:w-6 text-white" />,
+              title: "Secure & Confidential",
+              description: "Your information is protected",
+              color: "from-navy-600 to-blue-600"
+            },
+            {
+              icon: <MailCheck className="h-5 w-5 sm:h-6 sm:w-6 text-white" />,
+              title: "24-Hour Response",
+              description: "Quick follow-up guaranteed",
+              color: "from-blue-600 to-navy-600"
+            },
+            {
+              icon: <MessageCircle className="h-5 w-5 sm:h-6 sm:w-6 text-white" />,
+              title: "Expert Guidance",
+              description: "Personalized counseling",
+              color: "from-navy-600 to-blue-600"
+            }
+          ].map((card, index) => (
+            <div
+              key={index}
+              className="bg-white/80 backdrop-blur-sm rounded-xl p-4 text-center border border-navy-100 shadow-sm hover:shadow-md transition-all duration-300"
+            >
+              <div className={`w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br ${card.color} rounded-lg sm:rounded-xl flex items-center justify-center mx-auto mb-3`}>
+                {card.icon}
+              </div>
+              <h3 className="font-semibold text-navy-800 text-sm sm:text-base mb-1">{card.title}</h3>
+              <p className="text-xs sm:text-sm text-gray-600">{card.description}</p>
+            </div>
+          ))}
+        </motion.div> */}
+
+        {/* ================= FORM SECTION ================= */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 border border-navy-100 overflow-hidden mb-8 sm:mb-12"
+        >
+          {/* Form Header */}
+          <div className="p-4 sm:p-5 md:p-6 bg-gradient-to-r from-navy-50 to-blue-50 border-b border-navy-100">
+            <div className="flex items-center gap-3 sm:gap-4">
+              <div className="relative">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-navy-600 to-blue-600 rounded-lg sm:rounded-xl flex items-center justify-center text-white">
+                  <FileText className="h-5 w-5 sm:h-6 sm:w-6" />
+                </div>
+                <div className="absolute -top-1 -right-1 w-4 h-4 sm:w-5 sm:h-5 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-full flex items-center justify-center">
+                  <Star className="w-1.5 h-1.5 sm:w-2 sm:h-2 text-white" />
+                </div>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-green-800 mb-1">
-                  Enquiry Submitted Successfully!
-                </h3>
-                <p className="text-green-700">
-                  Thank you for your interest. Our admission team will contact
-                  you within 24 hours on {formData.mobile_no}.
-                </p>
-                <p className="text-green-600 text-sm mt-2">
-                  Your enquiry has been saved to our database.
-                </p>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Submit Error Message */}
-        {submitError && (
-          <div className="mb-8 bg-red-50 border border-red-200 rounded-lg p-6">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
-                <X className="w-6 h-6 text-red-600" />
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold text-red-800 mb-1">
-                  Submission Failed
-                </h3>
-                <p className="text-red-700">{submitError}</p>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Enquiries List Section */}
-        {showEnquiries && (
-          <div className="mb-12 bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200">
-            <div className="p-6 md:p-8">
-              <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
-                <h2 className="text-2xl font-bold text-[#800000]">
-                  Submitted Enquiries ({totalItems})
+                <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-navy-800">
+                  Enquiry Form
                 </h2>
-
-                {/* Filters */}
-                <div className="flex flex-col md:flex-row gap-4">
-                  {/* Search */}
-                  <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-                    <input
-                      type="text"
-                      placeholder="Search by name, email, or mobile..."
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                      className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F07B3D] focus:border-transparent"
-                    />
-                  </div>
-
-                  {/* Status Filter */}
-                  <select
-                    value={statusFilter}
-                    onChange={(e) => setStatusFilter(e.target.value)}
-                    className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F07B3D] focus:border-transparent"
-                  >
-                    <option value="">All Status</option>
-                    <option value="new">New</option>
-                    <option value="contacted">Contacted</option>
-                    <option value="follow_up">Follow Up</option>
-                    <option value="admitted">Admitted</option>
-                    <option value="rejected">Rejected</option>
-                  </select>
-
-                  {/* Class Filter */}
-                  <select
-                    value={classFilter}
-                    onChange={(e) => setClassFilter(e.target.value)}
-                    className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F07B3D] focus:border-transparent"
-                  >
-                    <option value="">All Classes</option>
-                    {classOptions.slice(1).map((cls) => (
-                      <option key={cls} value={cls}>
-                        {cls}
-                      </option>
-                    ))}
-                  </select>
-
-                  {/* Reset Filters */}
-                  <button
-                    onClick={resetFilters}
-                    className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors flex items-center gap-2"
-                  >
-                    <X className="h-4 w-4" />
-                    Reset
-                  </button>
+                <div className="flex items-center gap-1 mt-1">
+                  <div className="h-1 w-4 sm:w-6 bg-navy-500 rounded-full"></div>
+                  <div className="h-1 w-2 sm:w-3 bg-blue-500 rounded-full"></div>
+                  <div className="h-1 w-1 sm:w-2 bg-navy-400 rounded-full"></div>
                 </div>
               </div>
-
-              {/* Loading State */}
-              {loading ? (
-                <div className="text-center py-12">
-                  <div className="inline-block w-12 h-12 border-4 border-[#800000] border-t-transparent rounded-full animate-spin"></div>
-                  <p className="mt-4 text-gray-600">Loading enquiries...</p>
-                </div>
-              ) : enquiries.length === 0 ? (
-                <div className="text-center py-12">
-                  <div className="w-24 h-24 mx-auto bg-gray-100 rounded-full flex items-center justify-center mb-4">
-                    <FileText className="h-12 w-12 text-gray-400" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-700 mb-2">
-                    No Enquiries Found
-                  </h3>
-                  <p className="text-gray-500">
-                    {searchTerm || statusFilter || classFilter
-                      ? "Try changing your search filters"
-                      : "No enquiries have been submitted yet"}
-                  </p>
-                </div>
-              ) : (
-                <>
-                  {/* Enquiries Table */}
-                  <div className="overflow-x-auto">
-                    <table className="w-full">
-                      <thead>
-                        <tr className="bg-gray-50">
-                          <th className="py-3 px-4 text-left text-sm font-semibold text-gray-700">
-                            ID
-                          </th>
-                          <th className="py-3 px-4 text-left text-sm font-semibold text-gray-700">
-                            Student
-                          </th>
-                          <th className="py-3 px-4 text-left text-sm font-semibold text-gray-700">
-                            Father
-                          </th>
-                          <th className="py-3 px-4 text-left text-sm font-semibold text-gray-700">
-                            Class
-                          </th>
-                          <th className="py-3 px-4 text-left text-sm font-semibold text-gray-700">
-                            Mobile
-                          </th>
-                          <th className="py-3 px-4 text-left text-sm font-semibold text-gray-700">
-                            Status
-                          </th>
-                          <th className="py-3 px-4 text-left text-sm font-semibold text-gray-700">
-                            Submitted
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y divide-gray-100">
-                        {enquiries.map((enquiry) => (
-                          <tr key={enquiry.id} className="hover:bg-gray-50">
-                            <td className="py-3 px-4 text-sm text-gray-600">
-                              #{enquiry.id}
-                            </td>
-                            <td className="py-3 px-4">
-                              <div>
-                                <div className="font-medium text-gray-900">
-                                  {enquiry.full_name}
-                                </div>
-                                <div className="text-sm text-gray-500">
-                                  {enquiry.email}
-                                </div>
-                              </div>
-                            </td>
-                            <td className="py-3 px-4 text-sm text-gray-600">
-                              {enquiry.father_name}
-                            </td>
-                            <td className="py-3 px-4">
-                              <span className="inline-block px-3 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full">
-                                {enquiry.admission_class}
-                              </span>
-                            </td>
-                            <td className="py-3 px-4 text-sm text-gray-600">
-                              +91 {enquiry.mobile_no}
-                            </td>
-                            <td className="py-3 px-4">
-                              <span
-                                className={`inline-block px-3 py-1 text-xs font-medium rounded-full ${getStatusColor(
-                                  enquiry.status
-                                )}`}
-                              >
-                                {getStatusText(enquiry.status)}
-                              </span>
-                            </td>
-                            <td className="py-3 px-4 text-sm text-gray-600">
-                              {formatDateTime(enquiry.submitted_at)}
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-
-                  {/* Pagination */}
-                  <div className="flex flex-col md:flex-row items-center justify-between mt-6 pt-6 border-t border-gray-200">
-                    <div className="text-sm text-gray-600 mb-4 md:mb-0">
-                      Showing {(currentPage - 1) * perPage + 1} to{" "}
-                      {Math.min(currentPage * perPage, totalItems)} of{" "}
-                      {totalItems} entries
-                    </div>
-
-                    <div className="flex items-center gap-2">
-                      <button
-                        onClick={() =>
-                          setCurrentPage((prev) => Math.max(prev - 1, 1))
-                        }
-                        disabled={currentPage === 1}
-                        className="p-2 rounded-lg border border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
-                      >
-                        <ChevronLeft className="h-5 w-5" />
-                      </button>
-
-                      <div className="flex items-center gap-1">
-                        {Array.from(
-                          { length: Math.min(5, totalPages) },
-                          (_, i) => {
-                            let pageNum;
-                            if (totalPages <= 5) {
-                              pageNum = i + 1;
-                            } else if (currentPage <= 3) {
-                              pageNum = i + 1;
-                            } else if (currentPage >= totalPages - 2) {
-                              pageNum = totalPages - 4 + i;
-                            } else {
-                              pageNum = currentPage - 2 + i;
-                            }
-
-                            return (
-                              <button
-                                key={pageNum}
-                                onClick={() => setCurrentPage(pageNum)}
-                                className={`w-10 h-10 rounded-lg ${
-                                  currentPage === pageNum
-                                    ? "bg-[#800000] text-white"
-                                    : "border border-gray-300 hover:bg-gray-50"
-                                }`}
-                              >
-                                {pageNum}
-                              </button>
-                            );
-                          }
-                        )}
-                      </div>
-
-                      <button
-                        onClick={() =>
-                          setCurrentPage((prev) =>
-                            Math.min(prev + 1, totalPages)
-                          )
-                        }
-                        disabled={currentPage === totalPages}
-                        className="p-2 rounded-lg border border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
-                      >
-                        <ChevronRight className="h-5 w-5" />
-                      </button>
-
-                      {/* Per Page Selector */}
-                      <select
-                        value={perPage}
-                        onChange={(e) => setPerPage(Number(e.target.value))}
-                        className="ml-4 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F07B3D] focus:border-transparent"
-                      >
-                        <option value="10">10 per page</option>
-                        <option value="15">15 per page</option>
-                        <option value="25">25 per page</option>
-                        <option value="50">50 per page</option>
-                      </select>
-                    </div>
-                  </div>
-                </>
-              )}
             </div>
           </div>
-        )}
 
-        {/* Form Section */}
-        <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200">
+          {/* Success Message */}
+          {isSubmitted && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="m-4 sm:m-6 md:m-8"
+            >
+              <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-4 sm:p-6 border border-green-200">
+                <div className="flex items-center gap-4">
+                  <div className="relative">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-lg sm:rounded-xl flex items-center justify-center">
+                      <CheckCircle className="w-5 h-5 sm:w-6 sm:w-6 text-green-600" />
+                    </div>
+                    <div className="absolute -top-1 -right-1 w-4 h-4 sm:w-5 sm:h-5 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-full flex items-center justify-center">
+                      <Star className="w-1.5 h-1.5 sm:w-2 sm:h-2 text-white" />
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-base sm:text-lg md:text-xl font-semibold text-navy-800 mb-1">
+                      Enquiry Submitted Successfully!
+                    </h3>
+                    <p className="text-gray-700 text-sm sm:text-base">
+                      Thank you for your interest. Our admission team will contact 
+                      you within 24 hours on <span className="font-semibold text-navy-700">+91 {formData.mobile_no}</span>.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+
+          {/* Submit Error Message */}
+          {submitError && (
+            <div className="m-4 sm:m-6 md:m-8">
+              <div className="bg-gradient-to-br from-red-50 to-rose-50 rounded-xl p-4 sm:p-6 border border-red-200">
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-red-500/20 to-rose-500/20 rounded-lg sm:rounded-xl flex items-center justify-center">
+                    <X className="w-5 h-5 sm:w-6 sm:w-6 text-red-600" />
+                  </div>
+                  <div>
+                    <h3 className="text-base sm:text-lg font-semibold text-red-800 mb-1">
+                      Submission Failed
+                    </h3>
+                    <p className="text-red-700 text-sm sm:text-base">{submitError}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* Form Content */}
-          <div className="p-6 md:p-8">
+          <div className="p-4 sm:p-5 md:p-6 lg:p-8">
             <form onSubmit={handleSubmit} noValidate>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 {/* Left Column */}
                 <div>
                   {renderFormField({
@@ -1236,12 +1008,12 @@ const AdmissionEnquiryForm = () => {
 
               {/* Form validation summary */}
               {(Object.keys(errors).length > 0 || submitError) && (
-                <div className="mt-6 p-4 bg-red-50 border border-red-200 rounded-lg">
-                  <h4 className="font-semibold text-red-800 mb-2 flex items-center gap-2">
-                    <AlertCircle className="h-5 w-5" />
+                <div className="mt-6 p-4 bg-gradient-to-br from-red-50 to-rose-50 border border-red-200 rounded-lg">
+                  <h4 className="font-semibold text-red-800 mb-2 flex items-center gap-2 text-sm sm:text-base">
+                    <AlertCircle className="h-4 w-4 sm:h-5 sm:w-5" />
                     Please fix the following errors:
                   </h4>
-                  <ul className="list-disc list-inside text-red-700 text-sm space-y-1">
+                  <ul className="list-disc list-inside text-red-700 text-xs sm:text-sm space-y-1">
                     {errors.full_name && <li>Full Name: {errors.full_name}</li>}
                     {errors.date_of_birth && (
                       <li>Date of Birth: {errors.date_of_birth}</li>
@@ -1263,34 +1035,34 @@ const AdmissionEnquiryForm = () => {
               )}
 
               {/* Submit Button */}
-              <div className="mt-10">
+              <div className="mt-6 sm:mt-8">
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`w-full py-4 px-6 rounded-lg font-semibold text-white transition-all duration-300 flex items-center justify-center gap-3 ${
+                  className={`w-full py-3 sm:py-4 px-4 sm:px-6 rounded-lg sm:rounded-xl font-semibold text-white transition-all duration-300 flex items-center justify-center gap-2 sm:gap-3 text-sm sm:text-base ${
                     isSubmitting
                       ? "bg-gray-400 cursor-not-allowed"
-                      : "bg-gradient-to-r from-[#194369] to-[#194369] hover:from-[#194369] hover:to-[#194369] hover:shadow-lg transform hover:-translate-y-0.5"
+                      : "bg-gradient-to-r from-navy-600 to-blue-600 hover:shadow-lg hover:-translate-y-0.5"
                   }`}
                 >
                   {isSubmitting ? (
                     <>
-                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      <div className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                       Submitting...
                     </>
                   ) : (
                     <>
-                      <Send className="h-5 w-5" />
+                      <Send className="h-4 w-4 sm:h-5 sm:w-5" />
                       Submit Enquiry
                     </>
                   )}
                 </button>
 
-                <p className="text-center text-gray-500 text-sm mt-4">
+                <p className="text-center text-gray-600 text-xs sm:text-sm mt-3 sm:mt-4">
                   By submitting this form, you agree to our{" "}
                   <a
                     href="/privacy-policy"
-                    className="text-[#800000] hover:underline"
+                    className="text-navy-600 hover:underline font-medium"
                   >
                     Privacy Policy
                   </a>
@@ -1298,44 +1070,64 @@ const AdmissionEnquiryForm = () => {
               </div>
             </form>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Add CSS for animation */}
-        <style jsx>{`
-          @keyframes fadeIn {
-            from {
-              opacity: 0;
-              transform: translateY(-10px);
-            }
-            to {
-              opacity: 1;
-              transform: translateY(0);
-            }
-          }
-          .animate-fadeIn {
-            animation: fadeIn 0.5s ease-out;
-          }
+       
 
-          select option:disabled {
-            color: #9ca3af;
-          }
-
-          select option:not(:disabled) {
-            color: #1f2937;
-          }
-
-          /* Hide number input arrows */
-          input[type="number"]::-webkit-inner-spin-button,
-          input[type="number"]::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-          }
-
-          input[type="number"] {
-            -moz-appearance: textfield;
-          }
-        `}</style>
+        {/* ================= BOTTOM DECORATIVE ELEMENT ================= */}
+        <motion.div
+          className="flex justify-center mt-8 sm:mt-12"
+          initial={{ opacity: 0, scale: 0 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          viewport={{ once: true }}
+        >
+          <div className="flex items-center gap-3 sm:gap-4 text-navy-600">
+            <div className="w-6 h-px sm:w-8 md:w-12 bg-gradient-to-r from-transparent via-navy-400 to-transparent"></div>
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <Star className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-500" />
+              <span className="text-xs sm:text-sm font-medium">Your Journey Starts Here</span>
+              <Star className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-500" />
+            </div>
+            <div className="w-6 h-px sm:w-8 md:w-12 bg-gradient-to-r from-transparent via-navy-400 to-transparent"></div>
+          </div>
+        </motion.div>
       </div>
+
+      <style jsx>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.5s ease-out;
+        }
+
+        select option:disabled {
+          color: #9ca3af;
+        }
+
+        select option:not(:disabled) {
+          color: #1f2937;
+        }
+
+        /* Hide number input arrows */
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+
+        input[type="number"] {
+          -moz-appearance: textfield;
+        }
+      `}</style>
     </div>
   );
 };
