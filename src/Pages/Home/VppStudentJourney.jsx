@@ -34,6 +34,8 @@ function VppStudentJourney() {
       {/* Background decorative elements */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#0f172a] via-[#1e1b4b] to-[#312e81]"></div>
 
+     
+
       {/* Floating stars */}
       <div className="absolute inset-0">
         {[...Array(20)].map((_, i) => (

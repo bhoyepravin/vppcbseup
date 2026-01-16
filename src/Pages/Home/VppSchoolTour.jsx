@@ -49,7 +49,8 @@ function VppSchoolTour() {
             <div className="w-12 h-12 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl flex items-center justify-center">
               <MapPin className="w-7 h-7 text-[#800000]" />
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#800000] via-[#800000] to-[#800000] bg-clip-text text-transparent">
+            <h2 className="font-title text-3xl md:text-4xl font-bold text-gradient-navy
+">
               {vppSchoolTourData.title}
             </h2>
             <div className="w-12 h-12 bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-2xl flex items-center justify-center">

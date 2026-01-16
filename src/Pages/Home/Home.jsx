@@ -100,7 +100,7 @@ function Home() {
 
       {/* Student Journey Gallery - Dark gradient */}
       <section className="relative z-10">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0f172a] via-[#1e1b4b] to-[#312e81]"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#346cac] via-[#346cac] to-[#2c578b]"></div>
         <VppStudentJourney />
       </section>
 
