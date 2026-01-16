@@ -40,7 +40,7 @@ const Navbar = () => {
         { label: "Infrastructure", path: "/infrastructure" },
         { label: "Faculty", path: "/faculty" },
         { label: "Management", path: "/management" },
-        // { label: "Why Choose Us", path: "/about/why-us" },
+        { label: "Teachers", path: "/teachers" },
       ],
     },
     {

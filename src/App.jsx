@@ -67,7 +67,7 @@ function App() {
           path="/management"
           element={<ManagementCommittee />}
         />
-        <Route path="about/teachers" element={<Teachers />} />
+        <Route path="/teachers" element={<Teachers />} />
 
         <Route path="admission" element={<AdmissionForm />} />
         <Route path="/guidelines" element={<AdmissionGuidelines />} />
