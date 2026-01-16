@@ -354,6 +354,61 @@ import yogaday2 from "../assets/galleryimg/presecondary/yogaday_2.jpeg";
 import yogaday3 from "../assets/galleryimg/presecondary/yogaday_3.jpeg";
 import independancday1 from "../assets/galleryimg/presecondary/independanceday_1.jpeg";
 import independancday2 from "../assets/galleryimg/presecondary/independanceday_2.jpeg";
+import sportsdayaward1 from "../assets/galleryimg/sportsday/sport_day_awards_1.jpeg"
+import sportsdayaward2 from "../assets/galleryimg/sportsday/sport_day_awards_2.jpeg"
+import sportsdayaward3 from "../assets/galleryimg/sportsday/sport_day_awards_3.jpeg"
+import lecture1 from "../assets/galleryimg/speciallectures/lecture_1.jpeg"
+import lecture2 from "../assets/galleryimg/speciallectures/lecture_2.jpeg"
+import lecture3 from "../assets/galleryimg/speciallectures/special_lecture_1.jpeg"
+import lecture4 from "../assets/galleryimg/speciallectures/special_lecture_2.jpeg"
+import varsharambhupasana1 from "../assets/galleryimg/speciallectures/varsharambh_upasana_1.jpeg"
+import varsharambhupasana2 from "../assets/galleryimg/speciallectures/varsharambh_upasana_2.jpeg"
+import parentsmeet1 from "../assets/galleryimg/parentsmeet/parents_meet_1.jpeg"
+import parentsmeet2 from "../assets/galleryimg/parentsmeet/parents_meet_2.jpeg"
+import staffmeet1 from "../assets/galleryimg/parentsmeet/staff_meet_1.jpeg"
+import staffmeet2 from "../assets/galleryimg/parentsmeet/staff_meet_2.jpeg"
+import staffmeet3 from "../assets/galleryimg/parentsmeet/staff_meet_3.jpeg"
+import staffmeet4 from "../assets/galleryimg/parentsmeet/staff_meet_4.jpeg"
+import ramdandee1 from "../assets/galleryimg/ramdandee/ramdandee_nda_1.jpeg"
+import ramdandee2 from "../assets/galleryimg/ramdandee/ramdandee_nda_2.jpeg"
+import ramdandee3 from "../assets/galleryimg/ramdandee/ramdandee_nda_3.jpeg"
+
+import schoolinfra2 from "../assets/galleryimg/schoolinfra/school_infra_2.jpg"
+import schoolinfra3 from "../assets/galleryimg/schoolinfra/school_infra_3.jpg"
+import basketballtour1 from "../assets/galleryimg/sportsday/basketball_1.jpeg"
+import basketballtour2 from "../assets/galleryimg/sportsday/basketball_2.jpeg"
+import basketballtour3 from "../assets/galleryimg/sportsday/basketball_3.jpeg"
+import sportsday1 from "../assets/galleryimg/sportsday/sportday_1.jpeg"
+import sportsday2 from "../assets/galleryimg/sportsday/sportday_2.jpeg"
+import sportsday3 from "../assets/galleryimg/sportsday/sportday_3.jpeg"
+import aifriend1 from "../assets/galleryimg/studentskite/ai_friend.jpeg"
+import diwalicelebration1 from "../assets/galleryimg/studentskite/diwali_celebration_1.jpeg"
+import diwalicelebration2 from "../assets/galleryimg/studentskite/diwali_celebration_2.jpeg"
+import diwalicelebration3 from "../assets/galleryimg/studentskite/diwali_celebration_3.jpeg"
+import diwalicelebration4 from "../assets/galleryimg/studentskite/diwali_celebration_4.jpeg"
+import navratri1 from "../assets/galleryimg/studentskite/navratri_1.jpeg"
+import navratri2 from "../assets/galleryimg/studentskite/navratri_2.jpeg"
+import navratri3 from "../assets/galleryimg/studentskite/navratri_3.jpeg"
+import sant_tulshidas1 from "../assets/galleryimg/studentskite/sant_tulasidasjaynti_1.jpeg"
+import sant_tulshidas2 from "../assets/galleryimg/studentskite/sant_tulasidasjaynti_2.jpeg"
+import kargilday1 from "../assets/galleryimg/studentskite/kargilday_1.jpeg"
+import kargilday2 from "../assets/galleryimg/studentskite/kargilday_2.jpeg"
+import evsday1 from "../assets/galleryimg/studentskite/environment_day_1.jpeg"
+import evsday2 from "../assets/galleryimg/studentskite/environment_day_2.jpeg"
+import classicaldance1 from "../assets/galleryimg/studentskite/indian_classical_1.jpeg"
+import classicaldance2 from "../assets/galleryimg/studentskite/indian_classical_2.jpeg"
+import nagpanchami1 from "../assets/galleryimg/studentskite/nagpanchami.jpeg"
+import ranilaxmibaiskit1 from "../assets/galleryimg/studentskite/ranilaxmibai_1.jpeg"
+import ranilaxmibaiskit2 from "../assets/galleryimg/studentskite/ranilaxmibai_2.jpeg"
+import tilakpunyathithi1 from "../assets/galleryimg/studentskite/tilak_punyatithi.jpeg"
+import teacherorientation1 from "../assets/galleryimg/orientation/teach_orientation_1.jpeg"
+import teacherorientation2 from "../assets/galleryimg/orientation/teach_orientation_2.jpeg"
+import teacherstraining1 from "../assets/galleryimg/orientation/teachers_training_1.jpeg"
+import teacherstraining2 from "../assets/galleryimg/orientation/teachers_training_1.jpeg"
+
+
+
+
 
 export {
   ashadhiekadshi1,
@@ -374,4 +429,54 @@ export {
   yogaday3,
   independancday1,
   independancday2,
+  sportsdayaward1,
+  sportsdayaward2,
+  sportsdayaward3,
+  lecture1,
+  lecture2,
+  lecture3,
+  lecture4,
+  varsharambhupasana1,
+  varsharambhupasana2,
+  parentsmeet1,
+  parentsmeet2,
+  staffmeet1,
+  staffmeet2,
+  staffmeet3,
+  staffmeet4,
+  ramdandee1,
+  ramdandee2,
+  ramdandee3,
+  schoolinfra2,
+  schoolinfra3,
+  basketballtour1,
+  basketballtour2,
+  basketballtour3,
+  sportsday1,
+  sportsday2,
+  sportsday3,
+  aifriend1,
+  diwalicelebration1,
+  diwalicelebration2,
+  diwalicelebration3,
+  diwalicelebration4,
+  navratri1,
+  navratri2,
+  navratri3,
+  sant_tulshidas1,
+  sant_tulshidas2,
+  kargilday1,
+  kargilday2,
+  evsday1,
+  evsday2,
+  classicaldance1,
+  classicaldance2,
+  nagpanchami1,
+  ranilaxmibaiskit1,
+  ranilaxmibaiskit2,
+  tilakpunyathithi1,
+  teacherorientation1,
+  teacherorientation2,
+  teacherstraining1,
+  teacherstraining2
 };
