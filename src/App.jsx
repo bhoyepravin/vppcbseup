@@ -57,59 +57,59 @@ function App() {
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
 
-        <Route path="disclosure" element={<Disclosure />} />
+        <Route path="/disclosure" element={<Disclosure />} />
         <Route path="student-journey" element={<VppsStudentJourneydetails />} />
 
-        <Route path="about/about" element={<AboutUs />} />
-        <Route path="about/infrastructure" element={<Infrastructure />} />
-        <Route path="about/faculty" element={<FacultyPage />} />
+        <Route path="/about" element={<AboutUs />} />
+        <Route path="/infrastructure" element={<Infrastructure />} />
+        <Route path="/faculty" element={<FacultyPage />} />
         <Route
-          path="about/management-committee"
+          path="/management"
           element={<ManagementCommittee />}
         />
         <Route path="about/teachers" element={<Teachers />} />
 
         <Route path="admission" element={<AdmissionForm />} />
-        <Route path="admissions/guidelines" element={<AdmissionGuidelines />} />
-        <Route path="admissions/procedure" element={<AdmissionProcess />} />
-        <Route path="admissions/enquiry" element={<AdmissionEnquiryForm />} />
-        <Route path="admissions/admission" element={<AdmissionForm />} />
+        <Route path="/guidelines" element={<AdmissionGuidelines />} />
+        <Route path="/admissionprocess" element={<AdmissionProcess />} />
+        <Route path="/enquiry" element={<AdmissionEnquiryForm />} />
+        <Route path="/admissionform" element={<AdmissionForm />} />
 
-        <Route path="academics/pre-primary" element={<Preprimary />} />
+        <Route path="/pre-primary" element={<Preprimary />} />
         <Route path="academics/middle" element={<MiddleSection />} />
 
-        <Route path="academics/primary" element={<PrimarySection />} />
-        <Route path="academics/secondary" element={<SecondarySection />} />
+        <Route path="/primary" element={<PrimarySection />} />
+        <Route path="/secondary" element={<SecondarySection />} />
         <Route path="academics/result" element={<Result />} />
-        <Route path="info-corner/curriculum" element={<CurriculumSection />} />
+        <Route path="/curriculum" element={<CurriculumSection />} />
         <Route
-          path="info-corner/students-council"
+          path="/studentscouncil"
           element={<StudentCouncilSection />}
         />
         <Route
-          path="info-corner/cbse-affiliation"
+          path="/cbse-affiliation"
           element={<Cbseaffiliation />}
         />
         <Route
-          path="/info-corner/affiliation-certificate"
+          path="/affiliation-certificate"
           element={<AffiliationCertificate />}
         />
-        <Route path="info-corner/circulars" element={<Circulars />} />
-        <Route path="info-corner/book-list" element={<Booklist />} />
-        <Route path="info-corner/reports" element={<Reports />} />
+        <Route path="/circulars" element={<Circulars />} />
+        <Route path="/book-list" element={<Booklist />} />
+        <Route path="/reports" element={<Reports />} />
         <Route
-          path="/calendar/academic-calendar"
+          path="/academiccalendar"
           element={<Academiccalendar />}
         />
         <Route
-          path="calendar/class-wise-strength"
+          path="/class-wise-strength"
           element={<Classwisestrength />}
         />
-        <Route path="calendar/table-table" element={<Timetable />} />
-        <Route path="gallery/images" element={<Images />} />
-        <Route path="gallery/videos" element={<Videos />} />
-        <Route path="sports/photos" element={<SportsImages />} />
-        <Route path="sports/videos" element={<SportsVideos />} />
+        <Route path="/table-table" element={<Timetable />} />
+        <Route path="/images" element={<Images />} />
+        <Route path="/videos" element={<Videos />} />
+        <Route path="/sportsimages" element={<SportsImages />} />
+        <Route path="/sportsvideos" element={<SportsVideos />} />
 
         <Route
           path="sports/national-international-participants"
@@ -118,7 +118,7 @@ function App() {
 
         <Route path="co-curricular" element={<Cocurricular />} />
         <Route path="blog" element={<Blog />} />
-        <Route path="contact-us" element={<ContactUs />} />
+        <Route path="contact" element={<ContactUs />} />
         <Route path="social-connect" element={<SocialConnect />} />
         <Route path="vacancy" element={<JobRegistration />} />
 
