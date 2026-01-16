@@ -25,12 +25,6 @@ const AboutHero = () => {
           src={heroImg}
           alt="Campus Background"
           className="absolute top-0 left-0 w-full h-full object-cover"
-          style={{ 
-            objectPosition: "center center",
-            // Mobile: Center focus, Desktop: Slight top alignment for better composition
-            objectPosition: "center 30%"
-          }}
-          loading="eager"
         />
         {/* Optimized Overlay for different screen sizes */}
         <div className="absolute inset-0 bg-gradient-to-b from-navy-900/90 via-navy-800/75 to-navy-900/90 
