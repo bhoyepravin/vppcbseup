@@ -39,9 +39,9 @@ const Footer = () => {
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-      className="bg-gradient-to-r from-[#865bc2] via-[#7a4dbe] to-[#4502a3] text-white pt-16 pb-8 px-6 md:px-16 rounded-t-3xl shadow-inner"
+      className="gradient-navy text-white pt-12 sm:pt-14 md:pt-16 lg:pt-20 pb-6 sm:pb-8 px-4 sm:px-6 md:px-8 lg:px-16 rounded-t-2xl sm:rounded-t-3xl shadow-inner"
     >
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 md:gap-12">
         {/* Left Section - School Information */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
@@ -51,23 +51,23 @@ const Footer = () => {
           <img
             src={footerlogo}
             alt="Vidya Prabodhini Prashala Logo"
-            className="mb-6 w-40"
+            className="mb-4 sm:mb-6 w-32 sm:w-36 md:w-40"
           />
-          <h3 className="text-xl font-semibold mb-3 text-[#c4b5fd] flex items-center gap-2">
-            <IoCallOutline size={20} className="text-[#c4b5fd]" />
+          <h3 className="text-lg sm:text-xl font-semibold mb-3 text-white/90 flex items-center gap-2">
+            <IoCallOutline size={18} className="text-navy-200" />
             Contact Us
           </h3>
-          <p className="text-sm text-white/90 mb-4">
+          <p className="text-sm text-white/80 mb-4">
             Got something to say? Please drop us a line.
           </p>
-          <ul className="text-sm text-white/90 space-y-3">
+          <ul className="text-sm text-white/80 space-y-3">
             <li className="flex items-start gap-2">
               <IoLocationOutline
-                size={20}
-                className="text-[#a78bfa] mt-1 flex-shrink-0"
+                size={18}
+                className="text-navy-200 mt-1 flex-shrink-0"
               />
               <span>
-                <strong className="text-white">
+                <strong className="text-white font-medium">
                   Vidya Prabodhini Prashala CBSE
                 </strong>
                 <br />
@@ -77,24 +77,24 @@ const Footer = () => {
               </span>
             </li>
             <li className="flex items-center gap-2">
-              <MdOutlineEmail size={20} className="text-[#a78bfa]" />
+              <MdOutlineEmail size={18} className="text-navy-200" />
               <a
                 href="mailto:info@vppcbse.bhonsala.in"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/90 hover:text-white transition-colors duration-300"
+                className="text-white/80 hover:text-white transition-colors duration-300"
               >
                 info@vppcbse.bhonsala.in
               </a>
             </li>
 
             <li className="flex items-center gap-2">
-              <IoCallOutline size={20} className="text-[#a78bfa]" />
+              <IoCallOutline size={18} className="text-navy-200" />
               <a
                 href="tel:7507546666"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/90 hover:text-white transition-colors duration-300"
+                className="text-white/80 hover:text-white transition-colors duration-300"
               >
                 7507546666
               </a>
@@ -106,13 +106,13 @@ const Footer = () => {
             <h4 className="text-sm font-semibold text-white mb-2">
               SCHOOL TIMINGS:
             </h4>
-            <p className="text-sm text-white/90">
+            <p className="text-sm text-white/80">
               Monday to Friday: 8:00 AM - 2:00 PM
             </p>
-            <p className="text-sm text-white/90">
+            <p className="text-sm text-white/80">
               Saturday: 8:00 AM - 11:00 AM
             </p>
-            <p className="text-sm text-white/90 mt-2">
+            <p className="text-sm text-white/80 mt-2">
               Office: 8:30 AM - 12:00 PM
             </p>
           </div>
@@ -124,10 +124,10 @@ const Footer = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
         >
-          <h3 className="text-xl font-semibold mb-4 text-[#c4b5fd]">
+          <h3 className="text-lg sm:text-xl font-semibold mb-4 text-white/90">
             Quick Links
           </h3>
-          <ul className="text-sm text-white/90 space-y-2">
+          <ul className="text-sm text-white/80 space-y-2">
             <li className="hover:text-white transition-colors duration-300 cursor-pointer">
               About us
             </li>
@@ -150,24 +150,24 @@ const Footer = () => {
 
           {/* Social Media Links */}
           <div className="mt-8">
-            <h3 className="text-xl font-semibold mb-4 text-[#c4b5fd]">
+            <h3 className="text-lg sm:text-xl font-semibold mb-4 text-white/90">
               Stay Connected
             </h3>
-            <ul className="text-sm text-white/90 space-y-2 mb-6">
+            <ul className="text-sm text-white/80 space-y-2 mb-6">
               <li className="flex items-center gap-2">
-                <FaFacebookF className="text-[#a78bfa]" />
+                <FaFacebookF className="text-navy-200" />
                 <span>Facebook: See our latest portfolio & gallery</span>
               </li>
               <li className="flex items-center gap-2">
-                <FaLinkedin className="text-[#a78bfa]" />
+                <FaLinkedin className="text-navy-200" />
                 <span>LinkedIn: Connect with us for professional insights</span>
               </li>
               <li className="flex items-center gap-2">
-                <FaYoutube className="text-[#a78bfa]" />
+                <FaYoutube className="text-navy-200" />
                 <span>YouTube: Watch our videos & success stories</span>
               </li>
               <li className="flex items-center gap-2">
-                <FaInstagram className="text-[#a78bfa]" />
+                <FaInstagram className="text-navy-200" />
                 <span>Instagram: Follow our daily updates & events</span>
               </li>
             </ul>
@@ -187,7 +187,7 @@ const Footer = () => {
               <iframe
                 title="Vidya Prabodhini Map"
                 src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d432.0137821062885!2d73.75400732954571!3d20.008474559323567!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bddeb85fab84bf9%3A0x5f2e809d4e352b3b!2sVidya%20Prabodhini%20Prashala%20(%20C.B.S.E%20)!5e1!3m2!1sen!2sin!4v1768134378635!5m2!1sen!2sin"
-                className="w-full h-56"
+                className="w-full h-48 sm:h-52 md:h-56"
                 loading="lazy"
                 style={{ border: 0 }}
                 allowFullScreen
@@ -197,10 +197,10 @@ const Footer = () => {
 
             {/* Social Icons */}
             <div>
-              <h3 className="text-xl font-semibold mb-4 text-[#c4b5fd]">
+              <h3 className="text-lg sm:text-xl font-semibold mb-4 text-white/90">
                 Follow Us
               </h3>
-              <div className="flex gap-6">
+              <div className="flex gap-4 sm:gap-6">
                 {socialIcons.map(({ icon: Icon, label, url }, index) => (
                   <motion.a
                     key={index}
@@ -211,9 +211,9 @@ const Footer = () => {
                     whileTap={{ scale: 0.9 }}
                     transition={{ type: "spring", stiffness: 300 }}
                     title={label}
-                    className="bg-white/10 backdrop-blur-sm p-3 rounded-full shadow-sm hover:bg-white/20 text-[#c4b5fd] hover:text-white transition-all duration-300"
+                    className="bg-white/10 backdrop-blur-sm p-2.5 sm:p-3 rounded-full shadow-sm hover:bg-white/20 text-white hover:text-white transition-all duration-300"
                   >
-                    <Icon size={20} />
+                    <Icon size={18} className="sm:w-5 sm:h-5" />
                   </motion.a>
                 ))}
               </div>
@@ -221,12 +221,17 @@ const Footer = () => {
 
             {/* Accreditation */}
             <div className="pt-4 border-t border-white/20">
-              <p className="text-sm text-white/90">
-                <strong className="text-white">Affiliated with:</strong> C.B.S.E
-                (New Delhi)
+              <p className="text-sm text-white/80">
+                <strong className="text-white font-medium">
+                  Affiliated with:
+                </strong>{" "}
+                C.B.S.E (New Delhi)
               </p>
-              <p className="text-sm text-white/90">
-                <strong className="text-white">Affiliation No.:</strong> 1130258
+              <p className="text-sm text-white/80">
+                <strong className="text-white font-medium">
+                  Affiliation No.:
+                </strong>{" "}
+                1130258
               </p>
             </div>
           </div>
@@ -234,7 +239,7 @@ const Footer = () => {
       </div>
 
       {/* Footer Bottom */}
-      <div className="mt-12 text-center text-sm text-white/80 border-t border-white/20 pt-6">
+      <div className="mt-8 sm:mt-10 md:mt-12 text-center text-sm text-white/70 border-t border-white/20 pt-4 sm:pt-6">
         <p className="mb-2">
           © 2025{" "}
           <span className="font-semibold text-white">
@@ -242,24 +247,24 @@ const Footer = () => {
           </span>
           . All Rights Reserved.
         </p>
-        <div className="flex flex-wrap justify-center gap-4 mt-2">
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mt-2 text-xs sm:text-sm">
           <a
             href="#"
-            className="text-white/90 hover:text-white hover:underline transition-colors duration-300"
+            className="text-white/70 hover:text-white hover:underline transition-colors duration-300"
           >
             Terms & Conditions
           </a>
           <span className="text-white/50">|</span>
           <a
             href="#"
-            className="text-white/90 hover:text-white hover:underline transition-colors duration-300"
+            className="text-white/70 hover:text-white hover:underline transition-colors duration-300"
           >
             Privacy Policy
           </a>
           <span className="text-white/50">|</span>
           <a
             href="/disclosure"
-            className="text-white/90 hover:text-white hover:underline transition-colors duration-300"
+            className="text-white/70 hover:text-white hover:underline transition-colors duration-300"
           >
             Mandatory Public Disclosure
           </a>
