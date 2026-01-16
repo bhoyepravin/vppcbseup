@@ -9,17 +9,23 @@ import {
   BarChart3,
   ChevronRight,
   ChevronLeft,
+  Star,
+  Heart,
+  Sparkles,
+  Cloud,
+  Sun,
+  Moon,
 } from "lucide-react";
 import { curriculumData } from "../../../constant/Aboutus/Academics/curriculumData";
 
 const CurriculumCard = ({ item, index }) => {
   const iconMap = {
-    book: <BookOpen className="h-8 w-8" />,
-    target: <Target className="h-8 w-8" />,
-    users: <Users className="h-8 w-8" />,
-    award: <Award className="h-8 w-8" />,
-    brain: <Brain className="h-8 w-8" />,
-    chart: <BarChart3 className="h-8 w-8" />,
+    book: <BookOpen className="h-6 w-6 sm:h-8 sm:w-8" />,
+    target: <Target className="h-6 w-6 sm:h-8 sm:w-8" />,
+    users: <Users className="h-6 w-6 sm:h-8 sm:w-8" />,
+    award: <Award className="h-6 w-6 sm:h-8 sm:w-8" />,
+    brain: <Brain className="h-6 w-6 sm:h-8 sm:w-8" />,
+    chart: <BarChart3 className="h-6 w-6 sm:h-8 sm:w-8" />,
   };
 
   return (
@@ -28,46 +34,50 @@ const CurriculumCard = ({ item, index }) => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1, duration: 0.5 }}
       viewport={{ once: true }}
-      className="group bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border border-white/50 p-8 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 h-full"
+      className="group bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-navy-100 p-4 sm:p-6 md:p-8 hover:-translate-y-1 h-full"
     >
-      <div className="flex items-start justify-between mb-6">
-        <div
-          className={`p-4 rounded-xl ${item.bgColor} text-white shadow-lg transition-transform duration-300 group-hover:scale-110`}
-        >
-          {iconMap[item.icon] || <BookOpen className="h-8 w-8" />}
+      <div className="flex items-start justify-between mb-4 sm:mb-6">
+        <div className="relative">
+          <div className="p-3 sm:p-4 bg-gradient-to-br from-navy-600 to-blue-600 rounded-lg sm:rounded-xl text-white shadow-lg transition-transform duration-300 group-hover:scale-110">
+            {iconMap[item.icon] || <BookOpen className="h-6 w-6 sm:h-8 sm:w-8" />}
+          </div>
+          {/* Doodle decoration */}
+          <div className="absolute -top-1 -right-1 w-5 h-5 sm:w-6 sm:h-6 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-full flex items-center justify-center">
+            <Star className="w-2 h-2 sm:w-2.5 sm:h-2.5 text-white" />
+          </div>
         </div>
-        <div className="text-2xl text-gray-300">0{index + 1}</div>
+        <div className="text-lg sm:text-xl md:text-2xl text-navy-300 font-bold">0{index + 1}</div>
       </div>
 
-      <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-purple-600 transition-colors duration-300">
+      <h3 className="text-base sm:text-lg md:text-xl font-bold text-navy-800 mb-3 sm:mb-4 group-hover:text-navy-700 transition-colors duration-300">
         {item.title}
       </h3>
 
-      <div className="flex items-center gap-1.5 mb-4">
-        <div className="h-1 w-8 bg-purple-500 rounded-full"></div>
-        <div className="h-1 w-4 bg-blue-500 rounded-full"></div>
-        <div className="h-1 w-2 bg-pink-500 rounded-full"></div>
+      <div className="flex items-center gap-1 sm:gap-1.5 mb-3 sm:mb-4">
+        <div className="h-1 w-6 sm:w-8 bg-navy-500 rounded-full"></div>
+        <div className="h-1 w-3 sm:w-4 bg-blue-500 rounded-full"></div>
+        <div className="h-1 w-2 sm:w-2 bg-navy-400 rounded-full"></div>
       </div>
 
-      <p className="text-gray-700 mb-6 leading-relaxed">{item.description}</p>
+      <p className="text-gray-700 text-sm sm:text-base mb-4 sm:mb-6 leading-relaxed">{item.description}</p>
 
       {item.features && (
-        <div className="pt-6 border-t border-gray-100">
-          <ul className="space-y-3">
+        <div className="pt-4 sm:pt-6 border-t border-navy-100">
+          <ul className="space-y-2 sm:space-y-3">
             {item.features.slice(0, 3).map((feature, idx) => (
-              <li key={idx} className="flex items-center gap-3 text-gray-700">
-                <div className="w-2 h-2 rounded-full bg-purple-500"></div>
-                <span className="text-sm font-medium">{feature}</span>
+              <li key={idx} className="flex items-center gap-2 sm:gap-3 text-gray-700">
+                <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-navy-400 flex-shrink-0"></div>
+                <span className="text-xs sm:text-sm font-medium">{feature}</span>
               </li>
             ))}
           </ul>
         </div>
       )}
 
-      <div className="pt-6 mt-6 border-t border-gray-100">
-        <button className="group w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#194369] to-[#194369] text-white font-semibold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+      <div className="pt-4 sm:pt-6 mt-4 sm:mt-6 border-t border-navy-100">
+        <button className="group w-full inline-flex items-center justify-center gap-2 gradient-navy text-white font-semibold py-2 sm:py-3 px-4 sm:px-6 rounded-lg sm:rounded-xl shadow-md hover:shadow-lg transition-all duration-300 text-sm sm:text-base">
           <span>Learn More</span>
-          <ChevronRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+          <ChevronRight className="h-3 w-3 sm:h-4 sm:w-4 group-hover:translate-x-1 transition-transform duration-300" />
         </button>
       </div>
     </motion.div>
@@ -98,61 +108,69 @@ const OurCurriculum = () => {
   }, [currentSlide]);
 
   return (
-    <section className="py-20 relative overflow-hidden" id="curriculum">
-      {/* Background decorative elements - Similar to Inquiry */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-full -translate-x-48 -translate-y-48"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-blue-500/10 to-purple-500/10 rounded-full translate-x-48 translate-y-48"></div>
+    <section className="py-12 sm:py-16 md:py-20 lg:py-24 relative overflow-hidden bg-gradient-to-b from-white to-navy-50/30" id="curriculum">
+      {/* Background decorative elements */}
+      <div className="absolute top-0 left-0 w-48 h-48 sm:w-64 sm:h-64 bg-gradient-to-br from-navy-100/20 to-blue-100/10 rounded-full -translate-x-24 -translate-y-24"></div>
+      <div className="absolute bottom-0 right-0 w-48 h-48 sm:w-64 sm:h-64 bg-gradient-to-tl from-blue-100/10 to-navy-100/20 rounded-full translate-x-24 translate-y-24"></div>
 
-      {/* Floating elements */}
-      <div className="absolute inset-0">
-        {[...Array(3)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-32 h-32 bg-gradient-to-br from-purple-400/5 to-blue-400/5 rounded-full"
-            style={{
-              left: `${10 + i * 30}%`,
-              top: `${20 + i * 20}%`,
-            }}
-          />
-        ))}
+      {/* Creative Doodles for Pre-Primary Section */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Floating doodles */}
+        <div className="absolute top-10 left-5 sm:top-20 sm:left-10 opacity-20 animate-bounce">
+          <Cloud className="w-8 h-8 sm:w-10 sm:h-10 text-navy-400" />
+        </div>
+        <div className="absolute top-20 right-8 sm:top-32 sm:right-16 opacity-20 animate-pulse">
+          <Sun className="w-10 h-10 sm:w-12 sm:h-12 text-yellow-400" />
+        </div>
+        <div className="absolute bottom-20 left-10 sm:bottom-32 sm:left-20 opacity-20 animate-bounce">
+          <Heart className="w-8 h-8 sm:w-10 sm:h-10 text-pink-400" />
+        </div>
+        <div className="absolute bottom-10 right-5 sm:bottom-20 sm:right-10 opacity-20 animate-pulse">
+          <Moon className="w-8 h-8 sm:w-10 sm:h-10 text-blue-300" />
+        </div>
+        <div className="absolute top-1/3 left-1/4 opacity-15">
+          <Sparkles className="w-6 h-6 sm:w-8 sm:h-8 text-navy-300" />
+        </div>
+        <div className="absolute bottom-1/3 right-1/4 opacity-15">
+          <Star className="w-6 h-6 sm:w-8 sm:h-8 text-navy-300" />
+        </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* ================= Section Header ================= */}
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-12 md:mb-16"
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
           <div className="inline-flex items-center gap-3 mb-4">
-            <div className="w-2 h-2 rounded-full bg-purple-500"></div>
-            <h2 className="text-center text-2xl text-[#800000] md:text-4xl font-serif font-semibold text- mb-4
-">
+            <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-navy-500"></div>
+            <h2 className="font-title text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gradient-navy">
               Our Comprehensive Curriculum
             </h2>
-            <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+            <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-navy-500"></div>
           </div>
 
           <motion.div
-            className="h-1.5 w-24 bg-gradient-to-r from-[#800000] via-[#800000] to-[#800000] mx-auto mb-8 rounded-full"
+            className="h-1 sm:h-1.5 w-16 sm:w-20 md:w-24 gradient-navy mx-auto mb-6 sm:mb-8 rounded-full"
             initial={{ width: 0 }}
-            whileInView={{ width: "6rem" }}
+            whileInView={{ width: "4rem" }}
             transition={{ duration: 0.8, delay: 0.3 }}
             viewport={{ once: true }}
           />
           
-          <p className="text-gray-700 text-sm sm:text-base lg:text-lg leading-relaxed space-y-4 ">
+          <p className="text-gray-700 max-w-2xl mx-auto text-sm sm:text-base md:text-lg lg:text-xl px-2 sm:px-4">
             A balanced and innovative educational approach designed to nurture 
             every student's potential and prepare them for future challenges
           </p>
         </motion.div>
 
-        {/* Curriculum Cards - Desktop Grid & Mobile Slider */}
+        {/* ================= Curriculum Cards ================= */}
         <div className="relative">
           {/* Desktop Grid View */}
-          <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
             {curriculumData.map((item, index) => (
               <CurriculumCard key={item.id} item={item} index={index} />
             ))}
@@ -167,38 +185,54 @@ const OurCurriculum = () => {
                 style={{ transform: `translateX(-${currentSlide * 100}%)` }}
               >
                 {curriculumData.map((item, index) => (
-                  <div key={item.id} className="w-full flex-shrink-0 px-4">
+                  <div key={item.id} className="w-full flex-shrink-0 px-2 sm:px-4">
                     <motion.div
                       initial={{ opacity: 0, y: 30 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5 }}
                       viewport={{ once: true }}
-                      className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border border-white/50 p-6"
+                      className="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg border border-navy-100 p-4 sm:p-6"
                     >
                       <div className="flex items-start justify-between mb-4">
-                        <div
-                          className={`p-3 rounded-lg ${item.bgColor} text-white shadow-md`}
-                        >
-                          {iconMap[item.icon] || <BookOpen className="h-6 w-6" />}
+                        <div className="relative">
+                          <div className="p-3 bg-gradient-to-br from-navy-600 to-blue-600 rounded-lg text-white shadow-md">
+                            {iconMap[item.icon] || <BookOpen className="h-5 w-5" />}
+                          </div>
+                          <div className="absolute -top-1 -right-1 w-4 h-4 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-full flex items-center justify-center">
+                            <Star className="w-1.5 h-1.5 text-white" />
+                          </div>
                         </div>
-                        <div className="text-lg text-gray-300">0{index + 1}</div>
+                        <div className="text-base text-navy-300 font-bold">0{index + 1}</div>
                       </div>
 
-                      <h3 className="text-lg font-bold text-gray-900 mb-3">
+                      <h3 className="text-base font-bold text-navy-800 mb-2">
                         {item.title}
                       </h3>
 
-                      <div className="flex items-center gap-1 mb-3">
-                        <div className="h-1 w-6 bg-purple-500 rounded-full"></div>
+                      <div className="flex items-center gap-1 mb-2">
+                        <div className="h-1 w-6 bg-navy-500 rounded-full"></div>
                         <div className="h-1 w-3 bg-blue-500 rounded-full"></div>
-                        <div className="h-1 w-2 bg-pink-500 rounded-full"></div>
+                        <div className="h-1 w-2 bg-navy-400 rounded-full"></div>
                       </div>
 
-                      <p className="text-gray-700 text-sm mb-4 line-clamp-3">
+                      <p className="text-gray-700 text-xs sm:text-sm mb-3 leading-relaxed line-clamp-3">
                         {item.description}
                       </p>
 
-                      <button className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#194369] to-[#194369] text-white font-semibold py-2 px-4 rounded-lg text-sm">
+                      {item.features && (
+                        <div className="pt-3 border-t border-navy-100 mb-3">
+                          <ul className="space-y-1">
+                            {item.features.slice(0, 2).map((feature, idx) => (
+                              <li key={idx} className="flex items-center gap-2 text-gray-700">
+                                <div className="w-1.5 h-1.5 rounded-full bg-navy-400"></div>
+                                <span className="text-xs">{feature}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+
+                      <button className="w-full inline-flex items-center justify-center gap-2 gradient-navy text-white font-semibold py-2 px-4 rounded-lg text-xs sm:text-sm">
                         <span>Learn More</span>
                         <ChevronRight className="h-3 w-3" />
                       </button>
@@ -208,25 +242,25 @@ const OurCurriculum = () => {
               </div>
 
               {/* Slider Navigation */}
-              <div className="flex justify-between items-center mt-8">
+              <div className="flex justify-between items-center mt-6 sm:mt-8">
                 <button
                   onClick={prevSlide}
-                  className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-r from-[#194369] to-[#194369] text-white shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full gradient-navy text-white shadow-md hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                   disabled={currentSlide === 0}
                 >
-                  <ChevronLeft className="h-5 w-5" />
+                  <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5" />
                 </button>
 
                 {/* Dots Indicator */}
-                <div className="flex gap-2">
+                <div className="flex gap-1.5 sm:gap-2">
                   {curriculumData.map((_, index) => (
                     <button
                       key={index}
                       onClick={() => setCurrentSlide(index)}
-                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                      className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full transition-all duration-300 ${
                         index === currentSlide
-                          ? "bg-gradient-to-r from-[#194369] to-[#194369] w-6"
-                          : "bg-gray-300"
+                          ? "gradient-navy w-4 sm:w-6"
+                          : "bg-navy-300"
                       }`}
                     />
                   ))}
@@ -234,15 +268,34 @@ const OurCurriculum = () => {
 
                 <button
                   onClick={nextSlide}
-                  className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-r from-[#194369] to-[#194369] text-white transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full gradient-navy text-white shadow-md hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                   disabled={currentSlide === curriculumData.length - 1}
                 >
-                  <ChevronRight className="h-5 w-5" />
+                  <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5" />
                 </button>
               </div>
             </div>
           </div>
         </div>
+
+        {/* ================= Bottom decorative element ================= */}
+        <motion.div
+          className="flex justify-center mt-10 sm:mt-12 md:mt-16"
+          initial={{ opacity: 0, scale: 0 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          viewport={{ once: true }}
+        >
+          <div className="flex items-center gap-4 text-navy-600">
+            <div className="w-8 h-px sm:w-12 md:w-16 bg-gradient-to-r from-transparent via-navy-400 to-transparent"></div>
+            <div className="flex items-center gap-2">
+              <Star className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-500" />
+              <span className="text-xs sm:text-sm font-medium">Fun Learning Activities</span>
+              <Star className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-500" />
+            </div>
+            <div className="w-8 h-px sm:w-12 md:w-16 bg-gradient-to-r from-transparent via-navy-400 to-transparent"></div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -250,12 +303,12 @@ const OurCurriculum = () => {
 
 // Icon map for mobile view
 const iconMap = {
-  book: <BookOpen className="h-6 w-6" />,
-  target: <Target className="h-6 w-6" />,
-  users: <Users className="h-6 w-6" />,
-  award: <Award className="h-6 w-6" />,
-  brain: <Brain className="h-6 w-6" />,
-  chart: <BarChart3 className="h-6 w-6" />,
+  book: <BookOpen className="h-5 w-5" />,
+  target: <Target className="h-5 w-5" />,
+  users: <Users className="h-5 w-5" />,
+  award: <Award className="h-5 w-5" />,
+  brain: <Brain className="h-5 w-5" />,
+  chart: <BarChart3 className="h-5 w-5" />,
 };
 
 export default OurCurriculum;
