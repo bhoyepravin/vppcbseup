@@ -44,7 +44,7 @@ function VppLatestNews() {
         ))}
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 relative z-10">
         {/* Enhanced Header */}
         <motion.div
           className="text-center mb-16"

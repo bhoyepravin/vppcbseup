@@ -168,7 +168,7 @@ const Navbar = () => {
 
       {/* ================= MAIN NAVBAR ================= */}
       <header
-        className={`sticky top-0 z-50 bg-white shadow-lg transition-all rounded-b-4xl duration-300 ${
+        className={`sticky top-0 z-50 bg-white shadow-lg transition-all  duration-300 ${
           scrolled ? "py-2" : "py-3"
         }`}
       >

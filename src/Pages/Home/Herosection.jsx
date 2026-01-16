@@ -26,7 +26,7 @@ function HeroSection() {
   };
 
   return (
-    <section className="relative   min-h-[65vh] lg:h-[70vh] overflow-hidden bg-navy-800">
+    <section className="relative   min-h-[65vh] lg:h-[70vh] overflow-hidden bg-[#194369]">
       {/* Background Image with Gradient Overlay */}
       {images.length > 0 && (
         <div className="absolute inset-0">
@@ -35,7 +35,11 @@ function HeroSection() {
             alt="School Background"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-navy-900/85 via-navy-800/40 to-navy-700/0 md:bg-gradient-to-r md:from-navy-900/80 md:via-navy-800/40 md:to-transparent"></div>
+          <div className="absolute inset-0 
+bg-gradient-to-r 
+from-[#194369]/85 via-[#194369]/40 to-[#194369]/0 
+md:bg-gradient-to-r 
+md:from-[#194369]/80 md:via-[#194369]/40 md:to-transparent"></div>
         </div>
       )}
 
